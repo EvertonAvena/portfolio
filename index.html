@@ -1470,7 +1470,7 @@
         </div>
         <div class="hero-image">
             <div class="hero-image-frame">
-                <img id="hero-profile-image" src="asset/PROFILE.jpg" alt="Everton Avena profile photo" loading="eager">
+                <img id="hero-profile-image" src="./asset/PROFILE.jpg" alt="Everton Avena profile photo" loading="eager">
             </div>
         </div>
     </section>
@@ -1586,7 +1586,7 @@
             <a href="https://municipalagricultureoffice-landingpage.vercel.app/" target="_blank" style="text-decoration: none;">
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="asset/SMARTCORN_LOGO.png" alt="SmartCorn">
+                        <img src="./asset/SMARTCORN_LOGO.png" alt="SmartCorn">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">SmartCorn: A Mobile Application for Corn Disease Detection Using Machine Learning</h3>
@@ -1602,7 +1602,7 @@
 
             <div class="project-card fade-in" onclick="alert('Site is unavailable now')" style="cursor: pointer;">
                 <div class="project-image">
-                    <img src="asset/SILONG_title_white.png" alt="SILONG">
+                    <img src="./asset/SILONG_title_white.png" alt="SILONG">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">SILONG: System for Integrated Local Operations and Natural-disaster Guidance</h3>
@@ -1617,7 +1617,7 @@
 
             <div class="project-card fade-in" onclick="alert('Site is unavailable now')" style="cursor: pointer;">
                 <div class="project-image">
-                    <img src="asset/naslively.png" alt="NasLively">
+                    <img src="./asset/naslively.png" alt="NasLively">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">NasLively: Community Clean-Up Tracker App</h3>
@@ -1632,7 +1632,7 @@
 
             <div class="project-card fade-in" onclick="alert('Site is unavailable now')" style="cursor: pointer;">
                 <div class="project-image">
-                    <img src="asset/WALIS LOGO.png" alt="WALIS">
+                    <img src="./asset/WALIS LOGO.png" alt="WALIS">
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">WALIS: Waste Action and Local Integration System</h3>
@@ -1711,7 +1711,7 @@
     </footer>
 
     <!-- Sound Effect -->
-    <audio id="toggleSound" src="asset/light-switch.mp3" preload="auto"></audio>
+    <audio id="toggleSound" src="./asset/light-switch.mp3" preload="auto"></audio>
 
     <script>
         // Navbar Show/Hide on Scroll
@@ -1743,9 +1743,9 @@
         const heroImageContainer = document.querySelector('.hero-image');
         const heroProfileImage = document.getElementById('hero-profile-image');
         const heroProfileSources = [
-            { src: 'asset/PROFILE.jpg', alt: 'Everton Avena profile photo' },
-            { src: 'asset/PROFILE2.jpg', alt: 'Everton Avena profile photo 2' },
-            { src: 'asset/PROFILE3.jpg', alt: 'Everton Avena profile photo 3' }
+            { src: './asset/PROFILE.jpg', alt: 'Everton Avena profile photo' },
+            { src: './asset/PROFILE2.jpg', alt: 'Everton Avena profile photo 2' },
+            { src: './asset/PROFILE3.jpg', alt: 'Everton Avena profile photo 3' }
         ];
         heroProfileSources.forEach((item) => {
             const preloadImage = new Image();
@@ -1852,17 +1852,17 @@
 
         posterFiles.concat(posterFiles).forEach((fileNumber, index) => {
             const displayNumber = (index % posterFiles.length) + 1;
-            carouselTrack.appendChild(createCarouselItem(`POSTER/${fileNumber}.png`, displayNumber, 'Sample', 'Graphic design sample from a past client project.'));
+            carouselTrack.appendChild(createCarouselItem(`./POSTER/${fileNumber}.png`, displayNumber, 'Sample', 'Graphic design sample from a past client project.'));
         });
 
         logoFiles.concat(logoFiles).forEach((fileNumber, index) => {
             const displayNumber = (index % logoFiles.length) + 1;
-            logoCarouselTrack.appendChild(createCarouselItem(`LOGO/${fileNumber}.png`, displayNumber, 'Logo Sample', 'Logo sample from a past client project.'));
+            logoCarouselTrack.appendChild(createCarouselItem(`./LOGO/${fileNumber}.png`, displayNumber, 'Logo Sample', 'Logo sample from a past client project.'));
         });
 
         bannerFiles.concat(bannerFiles).forEach((fileNumber, index) => {
             const displayNumber = (index % bannerFiles.length) + 1;
-            bannerCarouselTrack.appendChild(createCarouselItem(`BANNER/${fileNumber}.png`, displayNumber, 'Banner Sample', 'Banner sample from a past client project.'));
+            bannerCarouselTrack.appendChild(createCarouselItem(`./BANNER/${fileNumber}.png`, displayNumber, 'Banner Sample', 'Banner sample from a past client project.'));
         });
 
         function closeCarouselModal() {
