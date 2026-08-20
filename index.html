@@ -1029,6 +1029,50 @@
             display: block;
         }
 
+        .video-card {
+            cursor: pointer;
+        }
+
+        .video-preview {
+            position: relative;
+            width: 100%;
+            height: 170px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+            background-color: rgba(15, 23, 42, 0.7);
+        }
+
+        .video-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.2), rgba(37, 99, 235, 0.5));
+        }
+
+        .video-play-badge {
+            position: relative;
+            z-index: 1;
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.6rem;
+            background: rgba(255, 255, 255, 0.88);
+            color: var(--primary);
+            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.2);
+        }
+
+        body.dark .video-play-badge {
+            background: rgba(15, 23, 42, 0.78);
+            color: var(--accent);
+        }
+
         .carousel-caption {
             padding: 1rem 1.1rem 1.1rem;
         }
@@ -1470,7 +1514,7 @@
         </div>
         <div class="hero-image">
             <div class="hero-image-frame">
-                <img id="hero-profile-image" src="/asset/PROFILE.jpg" alt="Everton Avena profile photo" loading="eager">
+                <img id="hero-profile-image" src="./asset/PROFILE.jpg" alt="Everton Avena profile photo" loading="eager">
             </div>
         </div>
     </section>
@@ -1673,9 +1717,17 @@
         </div>
     </section>
 
+    <section class="carousel-section" id="video-carousel">
+        <h2 class="section-title">Video Edited Samples</h2>
+        <div class="carousel-shell">
+            <div class="carousel-track" id="videoCarouselTrack"></div>
+        </div>
+    </section>
+
     <div class="carousel-modal" id="carouselModal" aria-hidden="true">
         <div class="carousel-modal-card" id="carouselModalCard">
             <img class="carousel-modal-image" id="carouselModalImage" alt="Expanded graphic design sample">
+            <video class="carousel-modal-image" id="carouselModalVideo" muted playsinline autoplay loop controls style="display:none;"></video>
             <div class="carousel-modal-caption" id="carouselModalCaption"></div>
             <div class="carousel-modal-close-hint">Move the cursor away to close</div>
         </div>
@@ -1711,7 +1763,7 @@
     </footer>
 
     <!-- Sound Effect -->
-    <audio id="toggleSound" src="/asset/light-switch.mp3" preload="auto"></audio>
+    <audio id="toggleSound" src="./asset/light-switch.mp3" preload="auto"></audio>
 
     <script>
         // Navbar Show/Hide on Scroll
@@ -1743,9 +1795,9 @@
         const heroImageContainer = document.querySelector('.hero-image');
         const heroProfileImage = document.getElementById('hero-profile-image');
         const heroProfileSources = [
-            { src: '/asset/PROFILE.jpg', alt: 'Everton Avena profile photo' },
-            { src: '/asset/PROFILE2.jpg', alt: 'Everton Avena profile photo 2' },
-            { src: '/asset/PROFILE3.jpg', alt: 'Everton Avena profile photo 3' }
+            { src: './asset/PROFILE.jpg', alt: 'Everton Avena profile photo' },
+            { src: './asset/PROFILE2.jpg', alt: 'Everton Avena profile photo 2' },
+            { src: './asset/PROFILE3.jpg', alt: 'Everton Avena profile photo 3' }
         ];
         heroProfileSources.forEach((item) => {
             const preloadImage = new Image();
@@ -1801,17 +1853,99 @@
         const posterFiles = [
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
             12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-            22, 23, 24, 25, 26, 27, 28, 29, 31, 32,
+            22, 23, 25, 26, 27, 28, 29, 31, 32,
             33, 34, 35, 36, 44, 45, 46, 47, 48, 50
         ];
         const logoFiles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
         const bannerFiles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const actualVideoFiles = [
+            '31 MC Ads.mp4',
+            'ADS_SPOTIFY.mp4',
+            'ALVIN_EDUCATIONAL.mp4',
+            'ALVIN_WEBSITE.mp4',
+            'CHISMIS_ALLSERVICES.mp4',
+            'Copy of Copy of ADS_STICKER.mp4',
+            'Copy of Copy of ADVERTISING.mp4',
+            'Copy of Copy of Chatbot (Sky).mp4',
+            'Copy of Copy of CHATBOT_2.mp4',
+            'Copy of Copy of DOCUMENTARY_2_JON_RUB.mp4',
+            'Copy of Copy of ENTERTAINMENT_1.mp4',
+            'Copy of Copy of GOOGLE_ADS.mp4',
+            'Copy of Copy of KICK_ADS.mp4',
+            'Copy of Copy of POS_VIDEO.mp4',
+            'Copy of Copy of REVERSE_PAPER.mp4',
+            'Copy of Copy of RUNNING_ADS.mp4',
+            'Copy of Copy of SFC_CONTENTS.mp4',
+            'Copy of Copy of SHOOT_CLOCK.mp4',
+            'Copy of Copy of SHOOT_SNAKE.mp4',
+            'Copy of Copy of SIR_CHARLES_VLOG_1.mp4',
+            'Copy of Copy of VLOG_1.mp4',
+            'Copy of JONELLE_EDUCATIONAL.mp4',
+            'Copy of MONTAGE_OFFICE.mp4',
+            'ENTERTAINMENT_PART_2.mp4',
+            'HEADACHE.mp4',
+            'JONELLE_EDUCATIONAL.mp4',
+            'KRISTIAN_EDUCATIONAL.mp4',
+            'May 5k ka ba dyan.mp4',
+            'PEL_EDUCATIONAL.mp4',
+            'RUBEN_EDUCATIONAL.mp4',
+            'SAD_BOY.mp4',
+            'THUMB_MONTAGE.mp4',
+            'WATER_BLOB.mp4'
+        ];
+
+        function normalizeVideoTitle(fileName) {
+            return fileName
+                .replace(/\.mp4$/i, '')
+                .replace(/^(?:copy\s+of\s+)+/i, '')
+                .replace(/[_-]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function generateVideoPoster(videoUrl, callback) {
+            const video = document.createElement('video');
+            video.src = videoUrl;
+            video.muted = true;
+            video.playsInline = true;
+            video.preload = 'metadata';
+            video.crossOrigin = 'anonymous';
+
+            const onLoaded = () => {
+                const canvas = document.createElement('canvas');
+                const width = video.videoWidth || 960;
+                const height = video.videoHeight || 540;
+                canvas.width = width;
+                canvas.height = height;
+
+                const context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0, width, height);
+                callback(canvas.toDataURL('image/jpeg', 0.8));
+            };
+
+            video.addEventListener('loadeddata', onLoaded, { once: true });
+            video.addEventListener('error', () => callback('./asset/PROFILE.jpg'), { once: true });
+            video.load();
+        }
+
+        const videoSamples = actualVideoFiles.map((fileName, index) => {
+            const title = normalizeVideoTitle(fileName) || `Video Sample ${index + 1}`;
+
+            return {
+                title,
+                source: `./video/${encodeURIComponent(fileName)}`,
+                poster: './asset/PROFILE.jpg',
+                description: 'Edited video sample from the portfolio collection.'
+            };
+        });
         const carouselTrack = document.getElementById('posterCarouselTrack');
         const logoCarouselTrack = document.getElementById('logoCarouselTrack');
         const bannerCarouselTrack = document.getElementById('bannerCarouselTrack');
+        const videoCarouselTrack = document.getElementById('videoCarouselTrack');
         const carouselModal = document.getElementById('carouselModal');
         const carouselModalCard = document.getElementById('carouselModalCard');
         const carouselModalImage = document.getElementById('carouselModalImage');
+        const carouselModalVideo = document.getElementById('carouselModalVideo');
         const carouselModalCaption = document.getElementById('carouselModalCaption');
 
         function createCarouselItem(sourcePath, displayNumber, labelText, descriptionText) {
@@ -1832,6 +1966,12 @@
             item.appendChild(caption);
 
             const openPreview = () => {
+                carouselModalVideo.pause();
+                carouselModalVideo.style.display = 'none';
+                carouselModalVideo.removeAttribute('src');
+                carouselModalVideo.load();
+
+                carouselModalImage.style.display = 'block';
                 carouselModalImage.src = image.src;
                 carouselModalImage.alt = image.alt;
                 carouselModalCaption.textContent = `${labelText} ${displayNumber} - ${descriptionText}`;
@@ -1850,25 +1990,91 @@
             return item;
         }
 
+        function createVideoCarouselItem(videoSource, posterSource, displayNumber, labelText, descriptionText) {
+            const item = document.createElement('div');
+            item.className = 'carousel-item video-card';
+            item.setAttribute('role', 'button');
+            item.setAttribute('tabindex', '0');
+
+            const preview = document.createElement('div');
+            preview.className = 'video-preview';
+            preview.style.backgroundImage = `url('${posterSource}')`;
+
+            generateVideoPoster(videoSource, (posterDataUrl) => {
+                preview.style.backgroundImage = `url('${posterDataUrl}')`;
+            });
+
+            const playBadge = document.createElement('div');
+            playBadge.className = 'video-play-badge';
+            playBadge.textContent = '▶';
+            preview.appendChild(playBadge);
+
+            const caption = document.createElement('div');
+            caption.className = 'carousel-caption';
+            caption.innerHTML = `<h3>${labelText} ${displayNumber}</h3><p>${descriptionText}</p>`;
+
+            item.appendChild(preview);
+            item.appendChild(caption);
+
+            const openPreview = () => {
+                carouselModalImage.style.display = 'none';
+                carouselModalImage.removeAttribute('src');
+
+                carouselModalVideo.style.display = 'block';
+                carouselModalVideo.src = videoSource;
+                carouselModalVideo.poster = posterSource;
+                carouselModalVideo.muted = true;
+                carouselModalVideo.playsInline = true;
+                carouselModalVideo.loop = true;
+                carouselModalVideo.controls = true;
+                carouselModalCaption.textContent = `${labelText} ${displayNumber} - ${descriptionText}`;
+                carouselModal.classList.add('open');
+                carouselModal.setAttribute('aria-hidden', 'false');
+
+                carouselModalVideo.play().catch(() => {
+                    console.log('Video autoplay was blocked until user interaction.');
+                });
+            };
+
+            item.addEventListener('click', openPreview);
+            item.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openPreview();
+                }
+            });
+
+            return item;
+        }
+
         posterFiles.concat(posterFiles).forEach((fileNumber, index) => {
             const displayNumber = (index % posterFiles.length) + 1;
-            carouselTrack.appendChild(createCarouselItem(`/POSTER/${fileNumber}.png`, displayNumber, 'Sample', 'Graphic design sample from a past client project.'));
+            carouselTrack.appendChild(createCarouselItem(`./POSTER/${fileNumber}.png`, displayNumber, 'Sample', 'Graphic design sample from a past client project.'));
         });
 
         logoFiles.concat(logoFiles).forEach((fileNumber, index) => {
             const displayNumber = (index % logoFiles.length) + 1;
-            logoCarouselTrack.appendChild(createCarouselItem(`/LOGO/${fileNumber}.png`, displayNumber, 'Logo Sample', 'Logo sample from a past client project.'));
+            logoCarouselTrack.appendChild(createCarouselItem(`./LOGO/${fileNumber}.png`, displayNumber, 'Logo Sample', 'Logo sample from a past client project.'));
         });
 
         bannerFiles.concat(bannerFiles).forEach((fileNumber, index) => {
             const displayNumber = (index % bannerFiles.length) + 1;
-            bannerCarouselTrack.appendChild(createCarouselItem(`/BANNER/${fileNumber}.png`, displayNumber, 'Banner Sample', 'Banner sample from a past client project.'));
+            bannerCarouselTrack.appendChild(createCarouselItem(`./BANNER/${fileNumber}.png`, displayNumber, 'Banner Sample', 'Banner sample from a past client project.'));
+        });
+
+        videoSamples.forEach((videoSample, index) => {
+            videoCarouselTrack.appendChild(createVideoCarouselItem(videoSample.source, videoSample.poster, index + 1, videoSample.title, videoSample.description));
         });
 
         function closeCarouselModal() {
             carouselModal.classList.remove('open');
             carouselModal.setAttribute('aria-hidden', 'true');
             carouselModalImage.removeAttribute('src');
+            carouselModalVideo.pause();
+            carouselModalVideo.removeAttribute('src');
+            carouselModalVideo.load();
+            carouselModalVideo.style.display = 'none';
+            carouselModalImage.style.display = 'block';
         }
 
         carouselModalCard.addEventListener('mouseleave', closeCarouselModal);
